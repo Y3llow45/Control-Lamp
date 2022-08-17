@@ -1,5 +1,5 @@
 #include <SoftwareSerial.h>
-SoftwareSerial HM10(0, 1); // RX = 2, TX = 3
+SoftwareSerial HM10(0, 1);
 char appData;  
 String inData = "";
 
@@ -8,7 +8,6 @@ void setup()
   Serial.begin(9600);
   HM10.begin(9600);
   pinMode(8, OUTPUT);
-  digitalWrite(13, LOW);
 }
 
 void loop()
@@ -17,7 +16,7 @@ void loop()
   while (HM10.available() > 0) {
     appData = HM10.read();
     inData = String(appData);
-    Serial.print(appData);
+    //Serial.print(appData);
     Serial.write(appData);
   }
   if (Serial.available()) {
@@ -25,12 +24,12 @@ void loop()
     HM10.write(Serial.read());
   }
   if ( inData == "A") {
-    Serial.println("LAMP ON");
+    //Serial.println("LAMP ON");
     digitalWrite(8, HIGH);
     delay(100);
   }
   if ( inData == "B") {
-    Serial.println("LAMP OFF");
+    //Serial.println("LAMP OFF");
     digitalWrite(8, LOW);
     delay(100);
   }
